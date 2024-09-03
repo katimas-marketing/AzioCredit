@@ -88,7 +88,10 @@
 /*----------------------------------------*/
 /*  1.1 Theme Default
 /*----------------------------------------*/
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&family=Fredoka+One&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&family=Fredoka+One&display=swap"); */
+
+@import url('https://fonts.googleapis.com/css2?family=Reddit+Sans:ital,wght@0,200..900;1,200..900&display=swap');
+
 .mean-container .mean-nav ul li > a.mean-expand i, .back-to-top-wrapper, a,
 button,
 p,
@@ -116,9 +119,9 @@ li,
   /**
   @font family declaration
   */
-  --tp-ff-body: 'DM Sans', sans-serif;
-  --tp-ff-heading: 'Fredoka One', cursive;
-  --tp-ff-p: 'DM Sans', sans-serif;
+  --tp-ff-body: 'Reddit Sans', sans-serif;
+  --tp-ff-heading: 'Reddit Sans', cursive;
+  --tp-ff-p: 'Reddit Sans', sans-serif;
   --tp-ff-fontawesome: "Font Awesome 6 Pro";
   /**
   @color declaration
@@ -655,6 +658,43 @@ div.demo img {
 
 /* Recently added - newly added */
 
+/* test whatsapp popup */
+:root {
+  --warna-background: #4dc247; 
+  --warna-bg-chat: #f0f5fb;
+  --warna-icon: #fff; 
+  --warna-text: #505050;
+  --warna-text-alt: #989b9f;
+  --lebar-chatbox: 320px;
+}
+.sticky-button{position:fixed;background-color:var(--warna-background);bottom:20px;left:20px;width:55px;height:55px;border-radius:50px;box-shadow:0 2px 5px 0 rgba(0,0,0,.1);z-index:20;overflow:hidden;}
+.sticky-button a, .sticky-button label{display:flex;align-items:center;width:55px;height:55px;-webkit-transition:all .3s ease-out;transition:all .3s ease-out;}
+.sticky-button a svg, .sticky-button label svg{margin:auto;fill:var(--warna-icon)}
+.sticky-button label svg.svg-2{display:none}
+.sticky-chat{position:fixed;bottom:70px;left:20px;width:var(--lebar-chatbox);-webkit-transition:all .3s ease-out;transition:all .3s ease-out;
+z-index:21;opacity:0;visibility:hidden;line-height:normal}
+
+.sticky-chat .chat-content{border-radius:10px;background-color:#fff;box-shadow:0 2px 5px 0 rgba(0,0,0,.05);overflow:hidden;z-index: -2;}
+
+.sticky-chat .chat-header{position:relative;display:flex;align-items:center;padding:15px 20px;background-color:var(--warna-background);overflow:hidden}
+.sticky-chat .chat-header:after{content:'';display:block;position:absolute;bottom:0;right:0;width:70px;height:65px;background:rgba(0,0,0,.040);border-radius:70px 0 5px 0;}
+.sticky-chat .chat-header svg{width:35px;height:35px;flex:0 0 auto;fill:var(--warna-icon)}
+.sticky-chat .chat-header .title{padding-left:15px;font-size:14px;font-weight:600;font-family:'Roboto', sans-serif;color:var(--warna-icon)}
+.sticky-chat .chat-header .title span{font-size:11px;font-weight:400;display:block;line-height:1.58em;margin:0;}
+.sticky-chat .chat-text{display:flex;flex-wrap:wrap;margin:25px 20px;font-size:12px;color:var(--warna-text)}
+.sticky-chat .chat-text span{display:inline-block;margin-right:auto;padding:10px 10px 10px 20px;background-color:var(--warna-bg-chat);border-radius:3px 15px 15px}
+.sticky-chat .chat-text span:after{content:'Just now';display:inline-block;margin-left:15px;font-size:9px;color:var(--warna-text-alt)}
+.sticky-chat .chat-text span.typing{margin:15px 0 0 auto;padding:10px 20px 10px 10px;border-radius:15px 3px 15px 15px}
+.sticky-chat .chat-text span.typing:after, .chat-menu{display:none}
+.sticky-chat .chat-text span.typing svg{height:14px;fill:var(--warna-text-alt)}
+.sticky-chat .chat-button{display:flex;align-items:center;margin-top:15px;padding:12px 20px;border-radius:10px;background-color:#fff;box-shadow:0 2px 5px 0 rgba(0,0,0,.05);overflow:hidden;font-size:12px;color:var(--warna-text)}
+.sticky-chat .chat-button svg{width:20px;height:20px;fill:var(--warna-text-alt);margin-left:auto;transform:rotate(40deg);-webkit-transform:rotate(40deg)}
+.chat-menu:checked + .sticky-button label{-webkit-transform: rotate(360deg);transform: rotate(360deg);}
+.chat-menu:checked + .sticky-button label svg.svg-1{display:none}
+.chat-menu:checked + .sticky-button label svg.svg-2{display:table-cell}
+.chat-menu:checked + .sticky-button + .sticky-chat{bottom:90px;opacity:1;visibility:visible}
+/* test whatsapp end */
+
 .image-container {
   width: 100%;
   max-width: 1000px;
@@ -903,7 +943,7 @@ form:not(:first-child) {
 }
 
 .result .title .loan-tenure-value{
-  color: #0669A7;
+  color: #044BD9;
   font-size: 25px;
   font-weight: 700;
   margin-bottom: 1rem;
@@ -913,7 +953,7 @@ form:not(:first-child) {
 
 
 .value {
-  color: #192647;
+  color: #044BD9;
   font-size:40px;
   font-weight: 700;
   margin-bottom: 1rem;
@@ -935,7 +975,7 @@ form:not(:first-child) {
   font-size: 16px;
   line-height: 1;
   color: #fff;
-  background-color: #0669A7;
+  background-color: #044BD9;
   padding: 15px 50px;
   border: none;
   border-radius: 50px;
@@ -962,13 +1002,13 @@ form:not(:first-child) {
   transition: 0.5s;
   margin-top: 10px;
   background: transparent;
-  border: 2px solid #60ccf1;
-  color: #60ccf1;
+  border: 2px solid #044BD9;
+  color: #044BD9;
 }
 
 .cal-apply-btn:hover {
-background: #0669A7;
-border: 2px solid #0669A7;
+background: #044BD9;
+border: 2px solid #044BD9;
 color: #fff;
 }
 
@@ -3340,8 +3380,14 @@ button:focus:not(:focus-visible) {
   z-index: 50;
 }
 .tp-header__menu ul li:hover a {
-  color: #fbd45b;
+  color: #fbd45a;
 }
+
+.tp-header__menu ul li.active a {
+  color: #fbd45a; /* Different color for the active menu item */
+  font-weight: bold; /* Optional: make it bold */
+}
+
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .tp-header-btn a {
     display: none !important;
@@ -3354,7 +3400,8 @@ button:focus:not(:focus-visible) {
 }
 .tp-header__logo {
   position: absolute;
-  padding: 15px 90px;
+  /* padding: 15px 90px; */
+  padding: 15px 113px;
   top: 0;
   left: 0;
   display: flex;
@@ -3363,9 +3410,29 @@ button:focus:not(:focus-visible) {
   z-index: 2;
   height: 100%;
 }
+
+/* .tp-header__logo {
+  position: relative; 
+  padding: 15px 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  height: 100px; 
+  background-color: white; 
+}
+
+.tp-header__logo img {
+  max-width: 100%; 
+  max-height: 100%; 
+  height: auto; 
+  width: auto; 
+  object-fit: contain; 
+} */
+
 @media only screen and (min-width: 1200px) and (max-width: 1399px) {
   .tp-header__logo {
-    padding: 15px 50px;
+    padding: 15px 80px;
   }
 }
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
@@ -3441,7 +3508,7 @@ button:focus:not(:focus-visible) {
 }
 .tp-header__menu ul li .sub-menu {
   position: absolute;
-  width: 230px;
+  width: 250px;
   background: var(--tp-heading-primary);
   padding: 28px;
   top: 110%;
