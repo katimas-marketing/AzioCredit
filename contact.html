@@ -1017,12 +1017,12 @@
 
       $(document).ready(() => {
          $('.error_message').hide();
-         grecaptcha.execute('6LdmCn0nAAAAANC8dQDeC3bko97zlloPkuFcyP7_', { action: 'submit' }).then((token) => {
-               var form = $('#subscribeForm');
-               form.prepend(`<input type=\'hidden\' id=\'token\' name=\'token\' value=\'${token}\'/>`);
-         }).catch((error) => {
-               console.log('an error occurred executing grecaptcha', error);
-         });
+         // grecaptcha.execute('6LdmCn0nAAAAANC8dQDeC3bko97zlloPkuFcyP7_', { action: 'submit' }).then((token) => {
+         //       var form = $('#subscribeForm');
+         //       form.prepend(`<input type=\'hidden\' id=\'token\' name=\'token\' value=\'${token}\'/>`);
+         // }).catch((error) => {
+         //       console.log('an error occurred executing grecaptcha', error);
+         // });
       })
 
    </script>
