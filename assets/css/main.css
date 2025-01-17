@@ -5069,6 +5069,11 @@ button:focus:not(:focus-visible) {
 .footer__top {
   position: relative;
 }
+@media (max-width: 991px) {
+  .footer__logo .logo img {
+    width: 42%;
+  }
+}
 @media (max-width: 767px) {
   .footer__top {
     padding-bottom: 48px;
