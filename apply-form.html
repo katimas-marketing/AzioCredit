@@ -445,6 +445,25 @@
                                     <input type="text" name="nettSalary" id="nettSalary" placeholder="Monthly Nett Salary (RM)">
                                     <div class="error-message" id="nettSalaryError" style="color: red;"></div>
                                  </div>
+
+                                 <div class="">
+                                    <!-- <label for="upload_file" class="formbold-form-label text-white" id="uploadFile">
+                                       Upload payslip/bank statement/EPF statement (Optional):
+                                    </label>
+                                    
+                                    <input type="file" name="uploadFile[]" id="uploadFile" multiple>
+                                    <br><br> -->
+
+                                    <!-- <label for="documents" class="text-white">Upload Documents (optional):</label>
+                                    <input class="text-white" type="file" id="documents" name="documents" multiple accept=".pdf,.jpg,.jpeg,.png" />
+                                    <div class="error_message" id="documents-error"></div>
+                                    <br><br> -->
+
+                                    <input class="text-white" type="file" id="fileInput" multiple accept=".pdf,.jpg,.jpeg,.png" />
+                                    <div id="fileDetails"></div>
+                                    <span class="error_message" id="fileError" style="color: red; display: none;"></span>
+                                    <br><br>
+                                 </div>
    
                                  <div class="contact__button">
                                     <button class="tp-btn-3 g-recaptcha"
@@ -597,6 +616,35 @@
          </div>
       </div>
    </div>
+   <!-- popup test -->
+   <!-- <div class="popup-overlay" id="thankYouPopup">
+    <div class="popup">
+      <h2>Thank You!</h2>
+      <p>If you wish, you can upload the following documents:</p>
+
+      <label>Photocopy MyKad:
+        <input type="file" name="mykad">
+      </label><br>
+
+      <label>Latest 3 months’ payslip:
+        <input type="file" name="payslip">
+      </label><br>
+
+      <label>Bank statements:
+        <input type="file" name="bank">
+      </label><br>
+
+      <label>EPF statement:
+        <input type="file" name="epf">
+      </label><br>
+
+      <label>Latest Utilities Bill:
+        <input type="file" name="utilities">
+      </label><br>
+
+      <button onclick="closePopup()">Done</button>
+    </div>
+  </div> -->
    <!-- cta  area end -->
 <!-- footer  area start -->
 <div class="footer__area mt-100" data-background="assets/img/footer/footer-img.jpg">
@@ -1101,6 +1149,48 @@
          }
       }
 
+      // File validation test
+         document.getElementById('fileInput').addEventListener('change', function () {
+         const files = this.files;
+         const fileDetailsDiv = document.getElementById('fileDetails');
+         const fileError = document.getElementById('fileError');
+         fileDetailsDiv.innerHTML = '';
+         fileError.style.display = 'none';
+         fileError.textContent = '';
+
+         if (files.length > 2) {
+            fileError.textContent = 'You can only upload up to 2 files.';
+            fileError.style.display = 'block';
+            this.value = ''; // clear file input
+            return;
+         }
+
+         Array.from(files).forEach((file, index) => {
+            if (file.size > 10 * 1024 * 1024) {
+               fileError.textContent = `File "${file.name}" exceeds 10MB size limit.`;
+               fileError.style.display = 'block';
+               this.value = '';
+               fileDetailsDiv.innerHTML = '';
+               return;
+            }
+
+            const wrapper = document.createElement('div');
+            wrapper.style.marginBottom = '10px';
+            wrapper.innerHTML = `
+               <p>${file.name}</p>
+               <label for="fileType_${index}">Select document type:</label>
+               <select name="fileType" id="fileType_${index}" class="fileTypeSelect">
+                  <option value="">-- Please select --</option>
+                  <option value="ic">IC / Identity Card</option>
+                  <option value="payslip">Payslip</option>
+                  <option value="epf">EPF Statement</option>
+                  <option value="bank">Bank Statement</option>
+               </select>
+            `;
+            fileDetailsDiv.appendChild(wrapper);
+         });
+      });
+
       function validateForm() {
          let isValid = true;
          const amountInput = document.getElementById('amount');
@@ -1171,7 +1261,35 @@
          } else {
             displayErrorMessage('nettSalary', '');
          }
+         // Validate file inputs
+         const fileInputs = document.querySelectorAll('.fileTypeSelect');
+         let hasIC = false;
+         let hasSupport = false;
+         let fileSelectionValid = true;
+
+         fileInputs.forEach(select => {
+            const val = select.value;
+            if (val === '') fileSelectionValid = false;
+            if (val === 'ic') hasIC = true;
+            if (['payslip', 'epf', 'bank'].includes(val)) hasSupport = true;
+         });
+
+         if (fileInputs.length > 0) {
+            if (!fileSelectionValid) {
+               displayErrorMessage('fileError', 'Please select a document type for each uploaded file.');
+               isValid = false;
+            } else if (!(hasIC && hasSupport)) {
+               displayErrorMessage('fileError', 'If uploading, you must provide 1 IC and 1 supporting document.');
+               isValid = false;
+            } else {
+               displayErrorMessage('fileError', '');
+            }
+            } else {
+               displayErrorMessage('fileError', '');
+            }
          return isValid;
+
+         
       }
 
       document.addEventListener('DOMContentLoaded', function () {
