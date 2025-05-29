@@ -383,7 +383,7 @@
                      <div class="contact__form mb-30">
                         <!-- test form -->
                         <!-- <div class="form-wrapper"> -->
-                           <form class="contact-form" method="post" id="applyForm">
+                           <form class="contact-form" method="post" id="applyForm" enctype="multipart/form-data">
                               <div class="contact__form-wrap">
                                  <div class="contact__input">
                                     <!-- <label for="amount" class="formbold-form-label" id="LoanAmount"> Loan Amount
@@ -446,29 +446,38 @@
                                     <div class="error-message" id="nettSalaryError" style="color: red;"></div>
                                  </div>
 
-                                 <div class="">
-                                    <!-- <label for="upload_file" class="formbold-form-label text-white" id="uploadFile">
-                                       Upload payslip/bank statement/EPF statement (Optional):
-                                    </label>
-                                    
-                                    <input type="file" name="uploadFile[]" id="uploadFile" multiple>
-                                    <br><br> -->
+                                 <!-- Files Upload 1 -->
+                                 <div class="contact__input">
+                                    <label for="upload-file-1" class="text-grey-custom ms-4">Photocopy MyKad (Optional)</label>
+                                    <!-- <br> -->
+                                    <!-- <span class="upload-info text-white">(Allowed file format are .pdf, .png or .img and file size should be less than 10MB)</span> -->
+                                    <div class="upload-container">
+                                       <div class="file-name" id="file-name-1"> </div>
+                                       <label class="tp-btn-3 upload-btn1" for="upload-file-1">Upload</label>
+                                       <input type="file" id="upload-file-1" name="myKad" accept=".pdf,.png,.jpg,.jpeg">
+                                    </div>
+                                    <div class="error-message" id="myKadFileSizeError" style="color: red;"></div>
+                                    <div class="error-message" id="myKadFileFormatError" style="color: red;"></div>
+                                 </div>
 
-                                    <!-- <label for="documents" class="text-white">Upload Documents (optional):</label>
-                                    <input class="text-white" type="file" id="documents" name="documents" multiple accept=".pdf,.jpg,.jpeg,.png" />
-                                    <div class="error_message" id="documents-error"></div>
-                                    <br><br> -->
-
-                                    <input class="text-white" type="file" id="fileInput" multiple accept=".pdf,.jpg,.jpeg,.png" />
-                                    <div id="fileDetails"></div>
-                                    <span class="error_message" id="fileError" style="color: red; display: none;"></span>
-                                    <br><br>
+                                 <!-- Files Upload 2 -->
+                                 <div class="contact__input">
+                                    <label for="upload-file-2" class="text-grey-custom ms-3">Latest Payslip / Bank / EPF Statement (Optional)</label>
+                                    <!-- <br> -->
+                                    <!-- <span class="upload-info text-white">(Allowed file format are .pdf, .png or .img and file size should be less than 10MB)</span> -->
+                                    <div class="upload-container">
+                                       <div class="file-name" id="file-name-2"> </div>
+                                       <label class="tp-btn-3 upload-btn1" for="upload-file-2">Upload</label>
+                                       <input type="file" id="upload-file-2" name="supportingDocument" accept=".pdf,.png,.jpg,.jpeg">
+                                    </div>
+                                    <div class="error-message" id="supportDocFileSizeError" style="color: red;"></div>
+                                    <div class="error-message" id="supportDocFileFormatError" style="color: red;"></div>
                                  </div>
    
                                  <div class="contact__button">
                                     <button class="tp-btn-3 g-recaptcha"
                                     data-sitekey="6LdmCn0nAAAAANC8dQDeC3bko97zlloPkuFcyP7_" data-callback='onSubmit'
-                                    data-action='submit' id="Submit"><span id="SendMessage">SEND MESSAGE</span></button>
+                                    data-action='submit' id="Submit"><span id="SendMessage">SUBMIT</span></button>
                                  </div>
       
                               </div> <!-- /.row -->
@@ -616,35 +625,6 @@
          </div>
       </div>
    </div>
-   <!-- popup test -->
-   <!-- <div class="popup-overlay" id="thankYouPopup">
-    <div class="popup">
-      <h2>Thank You!</h2>
-      <p>If you wish, you can upload the following documents:</p>
-
-      <label>Photocopy MyKad:
-        <input type="file" name="mykad">
-      </label><br>
-
-      <label>Latest 3 months’ payslip:
-        <input type="file" name="payslip">
-      </label><br>
-
-      <label>Bank statements:
-        <input type="file" name="bank">
-      </label><br>
-
-      <label>EPF statement:
-        <input type="file" name="epf">
-      </label><br>
-
-      <label>Latest Utilities Bill:
-        <input type="file" name="utilities">
-      </label><br>
-
-      <button onclick="closePopup()">Done</button>
-    </div>
-  </div> -->
    <!-- cta  area end -->
 <!-- footer  area start -->
 <div class="footer__area mt-100" data-background="assets/img/footer/footer-img.jpg">
@@ -1149,48 +1129,6 @@
          }
       }
 
-      // File validation test
-         document.getElementById('fileInput').addEventListener('change', function () {
-         const files = this.files;
-         const fileDetailsDiv = document.getElementById('fileDetails');
-         const fileError = document.getElementById('fileError');
-         fileDetailsDiv.innerHTML = '';
-         fileError.style.display = 'none';
-         fileError.textContent = '';
-
-         if (files.length > 2) {
-            fileError.textContent = 'You can only upload up to 2 files.';
-            fileError.style.display = 'block';
-            this.value = ''; // clear file input
-            return;
-         }
-
-         Array.from(files).forEach((file, index) => {
-            if (file.size > 10 * 1024 * 1024) {
-               fileError.textContent = `File "${file.name}" exceeds 10MB size limit.`;
-               fileError.style.display = 'block';
-               this.value = '';
-               fileDetailsDiv.innerHTML = '';
-               return;
-            }
-
-            const wrapper = document.createElement('div');
-            wrapper.style.marginBottom = '10px';
-            wrapper.innerHTML = `
-               <p>${file.name}</p>
-               <label for="fileType_${index}">Select document type:</label>
-               <select name="fileType" id="fileType_${index}" class="fileTypeSelect">
-                  <option value="">-- Please select --</option>
-                  <option value="ic">IC / Identity Card</option>
-                  <option value="payslip">Payslip</option>
-                  <option value="epf">EPF Statement</option>
-                  <option value="bank">Bank Statement</option>
-               </select>
-            `;
-            fileDetailsDiv.appendChild(wrapper);
-         });
-      });
-
       function validateForm() {
          let isValid = true;
          const amountInput = document.getElementById('amount');
@@ -1261,35 +1199,7 @@
          } else {
             displayErrorMessage('nettSalary', '');
          }
-         // Validate file inputs
-         const fileInputs = document.querySelectorAll('.fileTypeSelect');
-         let hasIC = false;
-         let hasSupport = false;
-         let fileSelectionValid = true;
-
-         fileInputs.forEach(select => {
-            const val = select.value;
-            if (val === '') fileSelectionValid = false;
-            if (val === 'ic') hasIC = true;
-            if (['payslip', 'epf', 'bank'].includes(val)) hasSupport = true;
-         });
-
-         if (fileInputs.length > 0) {
-            if (!fileSelectionValid) {
-               displayErrorMessage('fileError', 'Please select a document type for each uploaded file.');
-               isValid = false;
-            } else if (!(hasIC && hasSupport)) {
-               displayErrorMessage('fileError', 'If uploading, you must provide 1 IC and 1 supporting document.');
-               isValid = false;
-            } else {
-               displayErrorMessage('fileError', '');
-            }
-            } else {
-               displayErrorMessage('fileError', '');
-            }
          return isValid;
-
-         
       }
 
       document.addEventListener('DOMContentLoaded', function () {
@@ -1308,11 +1218,15 @@
          return data
       }
 
-      function sendData(formValue, quiet = false) {
+      function sendData(formElement, quiet = false) {
+         const formData = new FormData(formElement);
+
          $.ajax({
-            url: 'https://scripts.katimas.brixmind.com/applyform',
+            url: 'https://scripts.katimas.brixmind.com/applyform-upload',
             type: 'POST',
-            data: formValue,
+            data: formData,
+            processData: false,
+            contentType: false,
             success: function (data) {
                console.log('Success', data);
                $('#applyForm').hide();
@@ -1347,7 +1261,7 @@
             grecaptcha.execute('6LdmCn0nAAAAANC8dQDeC3bko97zlloPkuFcyP7_', { action: 'submit' }).then((token) => {
                var form = $('#applyForm');
                form.prepend(`<input type="hidden" name="token" value="${token}" />`);
-               sendData(form.serialize(), quiet);
+               sendData(form[0], quiet);
             })
                .catch((error) => {
                   console.log('An error occurred executing grecaptcha:', error);
@@ -1359,6 +1273,82 @@
          $('.error_message').hide();
       });
 
+   </script>
+
+      <script>
+      // Allowed MIME types --------------------------------------------
+      const allowedTypes = [
+         'application/pdf',
+         'image/png',
+         'image/jpeg',
+         'image/jpg'
+      ];
+
+      // validate file size and file format ----------------------------
+      function validateFile(input, display, fieldName) {
+         const file = input.files[0];
+         if (file) {
+            if (file.size > 10 * 1024 * 1024) {
+               displayErrorMessage(fieldName + 'FileSize', 'File must be less than 10MB');
+               input.value = '';
+               display.textContent = '';
+            } else if (!allowedTypes.includes(file.type)) {
+               displayErrorMessage(fieldName + 'FileFormat', 'Only PDF, PNG, JPG, or JPEG file are allowed');
+               input.value = '';
+               display.textContent = '';
+            } else {
+               displayErrorMessage(fieldName + 'FileSize', '');
+               displayErrorMessage(fieldName + 'FileFormat', '');
+               display.textContent = file.name;
+            }
+         }
+      }
+
+      // File Upload 1 -------------------------------------------------
+      const fileInput1 = document.getElementById("upload-file-1");
+      const fileNameDisplay1 = document.getElementById("file-name-1");
+
+      // File 1 — monitor for cancel
+      let previousValue1 = null;
+      fileInput1.addEventListener("click", function () {
+         previousValue1 = fileInput1.value;
+         displayErrorMessage('myKadFileSize', '');
+         displayErrorMessage('myKadFileFormat', '');
+      });
+
+      fileInput1.addEventListener("change", function () {
+         const file = fileInput1.files[0];
+         if (!file) {
+            // User canceled the dialog
+            fileInput1.value = '';
+            fileNameDisplay1.textContent = '';
+            return;
+         }
+         validateFile(fileInput1, fileNameDisplay1, "myKad");
+      });
+
+      // File Upload 2 -------------------------------------------------
+      const fileInput2 = document.getElementById("upload-file-2");
+      const fileNameDisplay2 = document.getElementById("file-name-2");
+
+      // File 2 — monitor for cancel
+      let previousValue2 = null;
+      fileInput2.addEventListener("click", function () {
+         previousValue2 = fileInput2.value;
+         displayErrorMessage('supportDocFileSize', '');
+         displayErrorMessage('supportDocFileFormat', '');
+      });
+
+      fileInput2.addEventListener("change", function () {
+         const file2 = fileInput2.files[0];
+         if (!file2) {
+            // User canceled the dialog
+            fileInput2.value = '';
+            fileNameDisplay2.textContent = '';
+            return;
+         }
+         validateFile(fileInput2, fileNameDisplay2, "supportDoc");
+      });
    </script>
 </body>
 

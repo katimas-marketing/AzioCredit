@@ -1020,46 +1020,6 @@ color: #fff;
 
 /* End For Loan Calculator */
 
-/* thank you form */
-.popup-overlay {
-      display: none;
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background-color: rgba(0, 0, 0, 0.6);
-      z-index: 1000;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .popup {
-      background: white;
-      padding: 30px;
-      border-radius: 10px;
-      max-width: 500px;
-      width: 90%;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    }
-
-    .popup h2 {
-      margin-top: 0;
-    }
-
-    .popup input[type="file"] {
-      margin-bottom: 15px;
-    }
-
-    .popup button {
-      padding: 10px 20px;
-      background-color: #007bff;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    .popup button:hover {
-      background-color: #0056b3;
-    }
 /* Recently added - newly added end */
 
 
@@ -12058,6 +12018,84 @@ option {
   padding: 50px;
   border: 2px solid #f4f3f1;
 }
+
+/* Apply Form File Upload */
+.upload-info {
+  font-size: 13px;
+  display: block;
+  margin-bottom: 5px;
+}
+.upload-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  min-height: 50px;
+}
+.upload-container input[type="file"] {
+  display: none;
+}
+.file-name {
+  flex: 1;
+  min-width: 200px;
+  line-height: 45px;
+  height: 60px;
+  padding: 6px;
+  padding-left: 30px;
+  border: 2px solid #364743;
+  color: #fff;
+  background-color: var(--tp-heading-primary);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.upload-btn {
+  height: 36px;
+  line-height: 36px;
+  padding: 0 15px;
+/* background-color: #00cfff; */
+  background-color: #fbd45b;
+  color: black;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.upload-btn:hover {
+  background-color: #00b6e6;
+}
+
+.upload-btn1 {
+  background-color: #fbd45b !important;
+  color: #000 !important;
+  position: absolute;
+  right: 5px;
+  padding: 10px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.upload-btn1:before {
+  top: -35%;
+}
+
+.text-grey-custom {
+  color: #98a8a5;
+}
+
+@media (max-width: 500px) {
+  .upload-container {
+    flex-direction: row;
+    align-items: center;
+  }
+  .upload-btn1 {
+    padding: 10px 5px;
+    font-size: 13px;
+    width: 25%;
+  }
+}
+
 @media only screen and (min-width: 768px) and (max-width: 991px), (max-width: 767px) {
   .contact__wrap {
     padding: 24px;
