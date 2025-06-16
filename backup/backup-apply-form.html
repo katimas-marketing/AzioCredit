@@ -487,13 +487,7 @@
       
                            <div id="success-message"
                               style="display: none; color: #0468BF; border: 1px solid #0468BF; padding: 20px">
-                              Thank you for submitting your application! We will be in touch with you shortly.
-                           </div>
-
-                           <div id="success-upload-message"
-                              style="display: none; color: #0468BF; border: 1px solid #0468BF; padding: 20px">
-                              Document successfully uploaded!
-                              Thank you and we will be in touch with you shortly.
+                              Thanks for contacting us! We will be in touch with you shortly.
                            </div>
       
                            <div id="Unsuccessfully-message" style="display: none; color: red;">
@@ -1123,37 +1117,6 @@
    <script src="assets/js/imagesloaded-pkgd.js"></script>
    <!-- <script src="assets/js/ajax-form.js"></script> -->
    <script src="assets/js/main.js"></script>
-
-   <!-- For handle form step 2, skip upload or success upload -->
-   <script>
-      // Read the full query string from the current URL
-      const params = new URLSearchParams(window.location.search);
-
-      // Get the value of the 'formStatus' parameter
-      const formStatus = params.get('status');
-
-      // Skip upload, submit form only
-      if (formStatus === 'form-submit') {
-         // console.log('Skipping upload step...');
-         $('#applyForm').hide();
-         $('#success-message').show();
-      }
-
-      // Upload success, submit form + upload
-      if (formStatus === 'form-with-upload') {
-         // console.log('Success upload documents');
-         $('#applyForm').hide();
-         $('#success-upload-message').show();
-      }
-
-      // Remove status param from the URL
-      if (formStatus) {
-         const url = new URL(window.location.href);
-         url.searchParams.delete('status');
-         window.history.replaceState({}, document.title, url.pathname + url.search);
-      }
-   </script>
-
    <script>
       grecaptcha.ready(() => {
          console.log('grecaptcha is ready');
@@ -1265,13 +1228,13 @@
             processData: false,
             contentType: false,
             success: function (data) {
-               // console.log('Success', data);
+               console.log('Success', data);
                $('#applyForm').hide();
                $('#success-message').show();
                resetForm();
 
                // Google Ads conversion tracking
-               gtag_report_conversion("https://aziocredit.com.my/apply-upload-form");
+               gtag_report_conversion();
             },
             error: function (xhr, status, error) {
                if (!quiet) {
