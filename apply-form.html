@@ -497,7 +497,7 @@
                            </div>
       
                            <div id="Unsuccessfully-message" style="display: none; color: red;">
-                              From Unsuccessfully send. Please try again.
+                              Form Unsuccessfully send. Please reload page and try again.
                            </div>
                         <!-- </div> -->
                      </div>
@@ -1236,6 +1236,16 @@
          } else {
             displayErrorMessage('nettSalary', '');
          }
+
+         if (!isValid) {
+            // Re-enable the submit button on failure
+            $('#Submit').prop('disabled', false).removeAttr('disabled').css({
+               'pointer-events': '',
+               'opacity': '',
+               'cursor': ''
+            }).text('SUBMIT');
+         }
+
          return isValid;
       }
 
@@ -1277,6 +1287,13 @@
                if (!quiet) {
                   console.error('An error occured:', error);
                   $('#Unsuccessfully-message').show();
+
+                  // Re-enable the submit button on failure
+                  $('#Submit').prop('disabled', false).removeAttr('disabled').css({
+                     'pointer-events': '',
+                     'opacity': '',
+                     'cursor': ''
+                  }).text('SUBMIT');
                }
             }
          });
@@ -1291,8 +1308,16 @@
       }
 
       function onSubmit(token, quiet = false) {
+         // Disable the submit button to prevent multiple clicks
+         $('#Submit').prop('disabled', true).attr('disabled', true).css({
+            'pointer-events': 'none',
+            'opacity': '0.6',
+            'cursor': 'not-allowed'
+         }).text('Submitting...');
+
          const form = $('#applyForm');
          const formValue = form.serialize();
+         console.log("submit form");
 
          if (validateForm()) {
             grecaptcha.execute('6LdmCn0nAAAAANC8dQDeC3bko97zlloPkuFcyP7_', { action: 'submit' }).then((token) => {
@@ -1302,6 +1327,12 @@
             })
                .catch((error) => {
                   console.log('An error occurred executing grecaptcha:', error);
+                  // Re-enable the submit button on failure
+                  $('#Submit').prop('disabled', false).removeAttr('disabled').css({
+                     'pointer-events': '',
+                     'opacity': '',
+                     'cursor': ''
+                  }).text('SUBMIT');
                });
          }
       }
