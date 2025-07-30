@@ -1,0 +1,3 @@
+User-agent: * 
+Disallow:
+SitemapL https://aziocredit.com.my/sitemap.xml
