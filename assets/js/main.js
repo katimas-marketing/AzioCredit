@@ -650,4 +650,7 @@
 		time: 1000
 	});
 
+	// Set current year in Copyright
+	$('#currentYear').text(new Date().getFullYear());
+
 })(jQuery);
