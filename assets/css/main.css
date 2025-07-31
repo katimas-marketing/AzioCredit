@@ -3730,6 +3730,20 @@ button:focus:not(:focus-visible) {
   color: #fbd45b !important;
 }
 
+.li-blog {
+  color: var(--tp-text-body);
+  display: inline-block;
+  font-weight: 700;
+  padding: 43px 0px;
+  line-height: 10px;
+  text-transform: uppercase;
+}
+
+.tp-header__menu ul li.active .li-blog {
+    color: #fbd45a;
+    font-weight: bold;
+}
+
 /*----------------------------------------*/
 /*  3.2 Header Style 2
 /*----------------------------------------*/
@@ -4750,6 +4764,14 @@ button:focus:not(:focus-visible) {
   .text-black a {
     color: #fff !important;
   }
+}
+
+.tp-menu-bar-custom {
+  margin-right: 0;
+  display: inline-block;
+  background: #fbd45a;
+  padding: 10px 20px;
+  transition: 0.3s;
 }
 
 .tp-menu-bar {
